@@ -1,0 +1,22 @@
+=DESCRIPTION
+Start openerp quickly without file config. Usefull for developper
+
+The aim is to run OpenERP without any config file. The script will parse the directory where your are in order to build automatically the addons-path.
+If you have configured a `BASEPATH` (using the config file .openerp_start.cfg) then the script will use the branch of the current directory completed with the branch of the `BASEPATH`
+
+Here an exemple:
+
+First create a config file in your home
+
+echo 'BASEPATH=/my/path/to/all/my/reference/ocb/branch/' > .openerp_start.cfg
+
+Then I want to add a feature in an OpenERP project
+Step one, I create a new directory `my_new_feature`
+Step two, I branch my project inside `bzr branch ...`
+Step three, start openerp with `soe`
+
+You can pass all of args supported by openerp (--debug, --logfile...)
+
+= Installation
+
+You can simply create a symlink of soe into /usr/local/bin

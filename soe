@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+BASEPATH=false
+
+if [ -f ~/.openerp_start.cfg ]
+then
+    source ~/.openerp_start.cfg
+fi
+
+LOCALPATH=$PWD
+
+branch_list=()
+server_path=false
+branch_path=()
+
+for base_path in $LOCALPATH $BASEPATH
+do
+    if [[ $base_path != false ]]; then
+        for path in ${base_path}/*
+        do
+            branch_name=${path##*/}
+            if [[ $branch_name == 'server' ]]; then
+                if [[ $server_path == false ]]; then
+                    server_path=$path
+                fi
+            elif [[ $branch_name == 'openerp-web' ]]; then
+                if [[ ! $branch_list =~ $branch_name ]]; then
+                    branch_list=("${branch_list[@]}" "${branch_name}")
+                    branch_path=("${branch_path[@]}" "${path}/addons")
+                fi
+            else
+                branch_list=("${branch_list[@]}" "${branch_name}")
+                branch_path=("${branch_path[@]}" "${path}")
+            fi
+        done
+    fi
+done
+
+addons_path=$( IFS=$','; echo "${branch_path[*]}" )
+
+python $server_path/openerp-server --addons-path=$addons_path $@ 
