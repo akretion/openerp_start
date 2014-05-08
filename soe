@@ -23,7 +23,7 @@ do
                 if [[ $server_path == false ]]; then
                     server_path=$path
                 fi
-            elif [[ $branch_name == 'openerp-web' ]]; then
+            elif [[ $branch_name == 'web' ]]; then
                 if [[ ! $branch_list =~ $branch_name ]]; then
                     branch_list=("${branch_list[@]}" "${branch_name}")
                     branch_path=("${branch_path[@]}" "${path}/addons")
