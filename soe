@@ -37,5 +37,8 @@ do
 done
 
 addons_path=$( IFS=$','; echo "${branch_path[*]}" )
-
+if [[ $server_path == false ]]; then
+    echo "No server have been found, maybe you didn't configure your basepath correctly"
+    exit 1
+fi
 python $server_path/openerp-server --addons-path=$addons_path $@ 
