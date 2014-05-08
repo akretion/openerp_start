@@ -17,6 +17,8 @@ Step three, start openerp with `soe`
 
 You can pass all of args supported by openerp (--debug, --logfile...)
 
+Note: if you want to set quickly the xmlrpc-port then use `soe number` like `soe 1` and it will run OpenERP with 8069+1*100 and so 8169. Enjoy it ;)
+
 = Installation
 
 You can simply create a symlink of soe into /usr/local/bin

@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
 BASEPATH=false
+port=false
 
-if [ -f ~/.openerp_start.cfg ]
-then
+if [ -f ~/.openerp_start.cfg ]; then
     source ~/.openerp_start.cfg
+fi
+
+if [[ $1 =~ ^-?[0-9]+$ ]]; then
+    port=$(( 8069+$1*100 ))
+    shift
+    set -- --xmlrpc-port=$port "$@"
 fi
 
 LOCALPATH=$PWD
@@ -41,4 +47,5 @@ if [[ $server_path == false ]]; then
     echo "No server have been found, maybe you didn't configure your basepath correctly"
     exit 1
 fi
+
 python $server_path/openerp-server --addons-path=$addons_path $@ 
