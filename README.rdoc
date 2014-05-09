@@ -11,13 +11,16 @@ First create a config file in your home
 echo 'BASEPATH=/my/path/to/all/my/reference/ocb/branch/' > .openerp_start.cfg
 
 Then I want to add a feature in an OpenERP project
-Step one, I create a new directory `my_new_feature`
-Step two, I branch my project inside `bzr branch ...`
-Step three, start openerp with `soe`
+
+ - Step one, I create a new directory `my_new_feature`
+ - Step two, I branch my project inside `bzr branch ...`
+ - Step three, start openerp with `soe`
 
 You can pass all of args supported by openerp (--debug, --logfile...)
 
-Note: if you want to set quickly the xmlrpc-port then use `soe number` like `soe 1` and it will run OpenERP with 8069+1*100 and so 8169. Enjoy it ;)
+Note: 
+ - 3 folders must have specific name to be recognize : addons, web, server (no openerp-web or other names)
+ - if you want to set quickly the xmlrpc-port then use `soe number` like `soe 1` and it will run OpenERP with 8069+1*100 and so 8169. Enjoy it ;)
 
 = Installation
 
